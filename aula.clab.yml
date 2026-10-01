@@ -1,0 +1,19 @@
+# Laboratorio da aula de SDN e ambientes de simulacao.
+# Dois computadores ligados por um cabo virtual, para o primeiro ping.
+name: aula
+
+topology:
+  nodes:
+    pc1:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.0.0.1/24 dev eth1
+    pc2:
+      kind: linux
+      image: ghcr.io/srl-labs/network-multitool
+      exec:
+        - ip addr add 10.0.0.2/24 dev eth1
+
+  links:
+    - endpoints: ["pc1:eth1", "pc2:eth1"]
